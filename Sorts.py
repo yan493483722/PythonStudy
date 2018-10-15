@@ -8,6 +8,8 @@ import time
 @desc: 排序算法
 @notice:    java 的Collections.sort方法底层就是调用的Arrays.sort方法，而Arrays.sort使用了两种排序方法，快速排序和优化的归并排序(效率高且稳定的算法。)。
             python 使用了 Timsort 是结合了归并排序（merge sort）和插入排序（insertion sort）而得出的排序算法
+http://www.cnblogs.com/eniac12/p/5329396.html
+https://www.cnblogs.com/eniac12/p/5332117.html
 @time: 2018/10/11 
 """
 
@@ -146,7 +148,7 @@ print("插入排序后列表为\n%s" % insertion_sort(needOrderList[:]))
 """
 def half_insertion_sort(half_insertion_sort_list):
     length=len(half_insertion_sort_list)
-    for i in range(length):
+    for i in range(1,length):
         temp =half_insertion_sort_list
         left =0
         right=i
