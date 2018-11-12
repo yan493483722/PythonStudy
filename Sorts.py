@@ -126,7 +126,7 @@ print("选择排序排序后列表为\n%s" % selection_sort(needOrderList[:]))
 
 def insertion_sort(insertion_sort_list):
     length = len(insertion_sort_list)
-    for i in range(1, length):
+    for i in range(1, length):  # 从 1 开始 因为比较的时候 ,至少要两个才能比较,所以这样第一个元素和第二个元素都比较了
         temp = insertion_sort_list[i]
         j = i
         for j in range(i, -1, -1):
@@ -134,7 +134,8 @@ def insertion_sort(insertion_sort_list):
                 insertion_sort_list[j] = insertion_sort_list[j - 1]
             else:  # 找到了对应的位置,将j的值得到了
                 break
-        insertion_sort_list[j] = temp
+        if insertion_sort_list[j] != temp:  # ,是最后一个,没必要赋值了,因为刚刚好就是自己
+            insertion_sort_list[j] = temp
     return insertion_sort_list
 
 
@@ -145,13 +146,47 @@ print("插入排序后列表为\n%s" % insertion_sort(needOrderList[:]))
 当n较大时，二分插入排序的比较次数比直接插入排序的最差情况好得多，但比直接插入排序的最好情况要差，
 所当以元素初始序列已经接近升序时，直接插入排序比二分插入排序比较次数少。二分插入排序元素移动次数
 与直接插入排序相同，依赖于元素初始序列。
+二分法插入排序是在插入排序的基础上，使用二分法查找将元素插入的方法
+基本原理：（升序）
+1.将元素依次放入有序序列中
+2.取出待排序元素，与有序序列的前半段进行比较
+3.缩小有序序列范围，进一步划分比较，直至范围内仅有1或2个数字
+4.将插入值与范围进行比较
+5.重复实现升序
+实现过程：外层循环控制循环次数，中层循环实现有序排列，内层循环实现查找插入
 """
-def half_insertion_sort(half_insertion_sort_list):
-    length=len(half_insertion_sort_list)
-    for i in range(1,length):
-        temp =half_insertion_sort_list
-        left =0
-        right=i
-        while right-left<=1:
 
-            left =(right -left) //2
+
+def half_insertion_sort(half_insertion_sort_list):
+    length = len(half_insertion_sort_list)  # 总长度
+    for i in range(1, length):
+        # 取出当前,然后进行排序
+        temp = half_insertion_sort_list[i]
+        # 与当前的前面所有元素进行比较
+        left, right = 0, i - 1
+        while right - left > 1:  # 中间差值大于1
+            middle = (right - left) // 2  # 中间值
+            if temp > half_insertion_sort_list[middle]:
+                # 边界值比右边小
+                right = middle
+            else:
+                left = middle
+        # 找到了当前的位置 左右之间的差距只剩下1了
+        if temp > half_insertion_sort_list[left]:
+            half_insertion_sort_list.insert(left, temp)
+            half_insertion_sort_list.__delitem__(i + 1)
+        else:
+            if left == right:
+                half_insertion_sort_list.insert(right + 1, temp)
+                half_insertion_sort_list.__delitem__(i + 1)
+            else:
+                if temp > half_insertion_sort_list[right]:
+                    half_insertion_sort_list.insert(right, temp)
+                    half_insertion_sort_list.__delitem__(i + 1)
+                else:
+                    half_insertion_sort_list.insert(right + 1, temp)
+                    half_insertion_sort_list.__delitem__(i + 1)
+    return half_insertion_sort_list
+
+
+print("选择排序排序后列表为\n%s" % half_insertion_sort(needOrderList[:]))
