@@ -166,11 +166,11 @@ def half_insertion_sort(half_insertion_sort_list):
         left, right = 0, i - 1
         while right - left > 1:  # 中间差值大于1
             middle = (right - left) // 2  # 中间值
-            if temp > half_insertion_sort_list[middle]:
+            if temp > half_insertion_sort_list[left + middle]:
                 # 边界值比右边小
-                right = middle
+                right = right - middle
             else:
-                left = middle
+                left = left + middle
         # 找到了当前的位置 左右之间的差距只剩下1了
         if temp > half_insertion_sort_list[left]:
             half_insertion_sort_list.insert(left, temp)
@@ -189,4 +189,4 @@ def half_insertion_sort(half_insertion_sort_list):
     return half_insertion_sort_list
 
 
-print("选择排序排序后列表为\n%s" % half_insertion_sort(needOrderList[:]))
+print("二分插入法排序后列表为\n%s" % half_insertion_sort(needOrderList[:]))
