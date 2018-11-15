@@ -37,7 +37,7 @@ def change(x, y):
 """
 
 
-# 普通排序
+# 冒泡排序(递归
 def normal_sort(begin_index, normal_sort_list):
     length = len(normal_sort_list)
     if begin_index >= length:  # 迭代终止条件
@@ -50,7 +50,7 @@ def normal_sort(begin_index, normal_sort_list):
 
 
 begin = int(time.time())
-print("冒泡排序耗时%s后列表为\n%s" % (int(time.time() - begin), normal_sort(0, needOrderList[:])))
+print("冒泡排序(递归)耗时%s后列表为\n%s" % (int(time.time() - begin), normal_sort(0, needOrderList[:])))
 
 """
 ===============================================================冒泡排序(for循环)===============================================================
@@ -67,7 +67,7 @@ def bubble_sort(bubble_sort_list):
     return bubble_sort_list
 
 
-print("冒泡排序后列表为\n%s" % bubble_sort(needOrderList[:]))
+print("冒泡排序(for循环)后列表为\n%s" % bubble_sort(needOrderList[:]))
 
 """
 ===============================================================双定向冒泡排序(鸡尾酒排序)===============================================================
