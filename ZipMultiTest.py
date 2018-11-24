@@ -8,21 +8,22 @@
 import threading
 import zipfile
 
-file = r"C:/Users/Administrator/Desktop/test.zip"
+file = r'D:\PycharmProjects\PythonStudy\dict.zip'
 zFile = zipfile.ZipFile(file)
 
 
-def getPassword(password):
-    try:
-        zFile.extractall(pwd=password.encode("ascii"))
-        print(password)
-        return
-    except Exception as ex:
-        pass
+def getPassword(temp):
+    for line in temp.readlines():
+        password = line.strip('\n')
+        try:
+            zFile.extractall(pwd=password.encode("ascii"))
+            print(password)
+            return
+        except Exception as ex:
+            pass
 
 
 def main():
-    zFile = zipfile.ZipFile(r'D:\PycharmProjects\PythonStudy\dict.zip')
     password_file1 = open(r'D:\PycharmProjects\PythonStudy\dict\1pass00.txt')
     password_file2 = open(r'D:\PycharmProjects\PythonStudy\dict\1pass01.txt')
     password_file3 = open(r'D:\PycharmProjects\PythonStudy\dict\1pass02.txt')
@@ -35,11 +36,9 @@ def main():
             password_file7}
     for temp in list:
         print(temp)
-        for line in temp.readlines():
-            password = line.strip('\n')
-            # print(password)
-            t = threading.Thread(target=getPassword,args=(password))
-            t.start()
+
+        t = threading.Thread(target=getPassword, args=(temp,))
+        t.start()
 
 
 if __name__ == '__main__':
