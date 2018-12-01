@@ -11,16 +11,25 @@ import zipfile
 file = r'D:\PycharmProjects\PythonStudy\dict.zip'
 zFile = zipfile.ZipFile(file)
 
+isFindPassword = False
+
 
 def getPassword(temp):
-    for line in temp.readlines():
-        password = line.strip('\n')
-        try:
-            zFile.extractall(pwd=password.encode("ascii"))
-            print(password)
-            return
-        except Exception as ex:
-            pass
+    global isFindPassword
+    try:
+        for line in temp.readlines():
+            if isFindPassword:
+                break
+            password = line.strip('\n')
+            try:
+                zFile.extractall(path=r'D:\PycharmProjects\zipTest', members=zFile.namelist(), pwd=password.encode("ascii"))
+                print(password)
+                zFile.close()
+                isFindPassword = True
+            except Exception as ex:
+                continue
+    finally:
+        temp.close()
 
 
 def main():
@@ -36,7 +45,6 @@ def main():
             password_file7}
     for temp in list:
         print(temp)
-
         t = threading.Thread(target=getPassword, args=(temp,))
         t.start()
 
