@@ -29,7 +29,8 @@ import sys
 x = 'this is the Word '
 sys.stdout.write(x + '\n')
 
-a,b,c,d=12,21,22,'addsdaa'
-sys.stdout.write(type(a)+" "+type(b)+" "+type(c)+" "+type(d))
+a, b, c, d = 12, 21, 22, 'addsdaa'
+sys.stdout.write(type(a) + " " + type(b) + " " + type(c) + " " + type(d))
 import keyword
+
 print(keyword.kwlist)
