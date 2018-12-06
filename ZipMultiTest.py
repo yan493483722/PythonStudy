@@ -6,26 +6,31 @@
 @time: 2018/11/23 
 """
 import threading
+import time
+import datetime
 import zipfile
 
 file = r'D:\PycharmProjects\PythonStudy\dict.zip'
 zFile = zipfile.ZipFile(file)
-
-isFindPassword = False
+realPassword = 0
 
 
 def getPassword(temp):
     global isFindPassword
+    global realPassword
     try:
         for line in temp.readlines():
-            if isFindPassword:
+            if realPassword != 0:
                 break
             password = line.strip('\n')
+            print("当前线程是：%s 尝试的密码为 %s" % (threading.current_thread().getName(), password))
             try:
-                zFile.extractall(path=r'D:\PycharmProjects\zipTest', members=zFile.namelist(), pwd=password.encode("ascii"))
-                print(password)
+                zFile.extractall(path=r'D:\PycharmProjects\zipTest', members=zFile.namelist(),
+                                 pwd=password.encode("ascii"))
                 zFile.close()
                 isFindPassword = True
+                realPassword = password
+                print("耗时  %1d  密码是：%2s" % (int(time.time()) - begin, realPassword))
             except Exception as ex:
                 continue
     finally:
@@ -49,5 +54,6 @@ def main():
         t.start()
 
 
+begin = int(time.time())
 if __name__ == '__main__':
     main()
