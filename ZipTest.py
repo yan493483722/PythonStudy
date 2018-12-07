@@ -7,7 +7,6 @@
 """
 import itertools as its
 import time
-import zipfile
 
 zFile = ""
 file = r"C:/Users/Administrator/Desktop/test.zip"
@@ -15,29 +14,25 @@ file = r"C:/Users/Administrator/Desktop/test.zip"
 
 def tryPwd(countNum):
     begin = int(time.time())
-    time.sleep(10)
-    words = "0123456879"
-    # localtime = time.localtime(time.time())
-    # print("本地时间为 :", localtime)
-    # localtime = time.asctime(time.localtime(time.time()))
-    # print("本地时间为 :", localtime)
-    # for count in range(1, countNum + 1):
-    #     r = its.product(words, repeat=count)
-    #     print("试到了：" + str(count) + "位")
-    #     pwd = ""
-    #     for i in r:
-    #         pwd = "".join(i)
-    #         zFile = zipfile.ZipFile(file)
-    #         try:
-    #             print(pwd)
-    #             zFile.extractall(pwd=pwd.encode("ascii"))
-    #             print(pwd)
-    #             return
-    #         except Exception as ex:
-    #             continue
-    delay=(time.time()) - begin
-    print(delay.strftime("%I:%M:%S"))
-    print("耗时%d" % (int(delay)))
+    # words = "0123456879"
+    words = "0123456879ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+    for count in range(1, countNum + 1):
+        r = its.product(words, repeat=count)
+        m, s = divmod(int(time.time()) - begin, 60)
+        h, m = divmod(m, 60)
+        print("前%1s位耗时%2d时%2d分%2d秒" % (count - 1, h, m, s))
+        print("正在尝试第：" + str(count) + "位")
+        for i in r:
+            pwd = "".join(i)
+            try:
+            #     # do you work here
+                print("正在尝试密码:%s" % pwd)
+            except Exception :
+                print("尝试密码:%s 出错了" % pwd)
+                continue
+    m, s = divmod(int(time.time()) - begin, 60)
+    h, m = divmod(m, 60)
+    print("总共耗时%2d时%2d分%2d秒" % (h, m, s))
 
 
-tryPwd(0)
+tryPwd(6)
