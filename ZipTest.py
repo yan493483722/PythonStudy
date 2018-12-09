@@ -25,9 +25,9 @@ def tryPwd(countNum):
         for i in r:
             pwd = "".join(i)
             try:
-            #     # do you work here
+                #     # do you work here
                 print("正在尝试密码:%s" % pwd)
-            except Exception :
+            except Exception:
                 print("尝试密码:%s 出错了" % pwd)
                 continue
     m, s = divmod(int(time.time()) - begin, 60)

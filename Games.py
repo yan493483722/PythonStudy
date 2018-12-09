@@ -23,5 +23,4 @@ for i in info:
     else:
         continue
 
-
 print(info)

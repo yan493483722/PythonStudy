@@ -199,3 +199,9 @@ print("二分插入法排序后列表为\n%s" % half_insertion_sort(needOrderLis
 但插入排序一般来说是低效的，因为插入排序每次只能将数据移动一位
 插入排序的更高效改进：希尔排序(Shell Sort)
 '''
+
+
+def shellSort(shell_sort_list):
+    length = len(shell_sort_list)
+
+    return
