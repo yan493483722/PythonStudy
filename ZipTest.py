@@ -30,9 +30,10 @@ def tryPwd(countNum):
             except Exception:
                 print("尝试密码:%s 出错了" % pwd)
                 continue
-    m, s = divmod(int(time.time()) - begin, 60)
+    m, s = divmod(330789, 60)
     h, m = divmod(m, 60)
-    print("总共耗时%2d时%2d分%2d秒" % (h, m, s))
+    d, h = divmod(h, 24)
+    print("总共耗时%3d天%2d时%2d分%2d秒" % (d, h, m, s))
 
 
 tryPwd(6)
