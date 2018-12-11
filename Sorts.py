@@ -204,6 +204,8 @@ print("二分插入法排序后列表为\n%s" % half_insertion_sort(needOrderLis
 def shellSort(shell_sort_list):
     length = len(shell_sort_list)
     while(True):
-        d=length/2
+        d=(int)(length/2)
+        for i in range(d):
+            for j in range(i):
 
     return
