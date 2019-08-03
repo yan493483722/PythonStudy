@@ -48,11 +48,11 @@ def myMethod():
         day = int(dateArr[2])
         '''是否是闰年'''
         for m in range(1, month):
-            if (m <= 7):
+            if m <= 7:
                 if m % 2 == 1:
                     allDate += 31
                 else:
-                    if (m == 2):
+                    if m == 2:
                         if (year % 400 == 0) or ((year % 4 == 0) and (year % 100 != 0)):
                             allDate += 29
                         else:
