@@ -17,8 +17,8 @@ zInput = zipfile.ZipFile(file)
 def tryPwd(countNum):
     begin = int(round(time.time() * 1000))
     print("开始是 {} 毫秒", begin)
-    # words = "0123456789"
-    words = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+    words = "0123456789"
+    # words = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
     for count in range(1, countNum + 1):
         r = its.product(words, repeat=count)
         s, ms = divmod(int(round(time.time() * 1000)) - begin, 1000)
@@ -49,4 +49,4 @@ def tryPwd(countNum):
     print("总共耗时%3d天%2d时%2d分%2d秒%d毫秒" % (d, h, m, s, ms))
 
 
-tryPwd(5)
+tryPwd(6)
